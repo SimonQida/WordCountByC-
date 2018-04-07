@@ -76,6 +76,7 @@ vector<outdoc> analysis(vector<string> para){ //return outdoc vector to print an
                 isorigin = 1;           //  I still  wandering when to reset the mode   temprary when a -o occur
                 clearpara(parastate,sizeof(parastate)/sizeof(bool));
                 outdocvec.push_back(*odc);
+                delete odc;
             }
             else if(followfile){    //  -e file
                 followfile =0;
@@ -101,6 +102,7 @@ vector<outdoc> analysis(vector<string> para){ //return outdoc vector to print an
                 string content = readfiles(para[i]);
                 idc = new indoc(para[i],content,vector<bool>(parastate,parastate+4));
                 indocvec.push_back(*idc);
+                delete idc;
             }
 
 
@@ -109,6 +111,7 @@ vector<outdoc> analysis(vector<string> para){ //return outdoc vector to print an
     if(indocvec.size()){
         odc = new outdoc(indocvec,"output.txt");   //new a outdoc pointed by odc and clear state,doc_in
         outdocvec.push_back(*odc);
+        delete odc;
     }
 
     /*for(string s:para){

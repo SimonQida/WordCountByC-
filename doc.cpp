@@ -76,24 +76,21 @@ void indoc::cal(){
         word = "";      //to map
     }
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222222222222problem
-    wow *wp,*pwd,wd;
+    wow *wp;
     for(auto itr=wordmap.begin();itr!=wordmap.end();itr++){
         wp = new wow((*itr).first,(*itr).second);
         if(frewords.currentsize>=100){       // get the top 100
             //cout<<" "<<frewords.currentsize<<" ";
             if(frewords.findMin()<(*wp))
             {
-                frewords.deleteMin(wd);
+                frewords.deleteMin();
                 frewords.insert(*wp);
-                /*
-                pwd = &wd;
-                delete pwd;      //manage the space 
-                */
             }
         }
         else 
             frewords.insert(*wp);
         wordcount+= (*itr).second;
+        delete wp;
     }
     cout<<"sparing over";
 }
